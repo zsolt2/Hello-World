@@ -12,6 +12,11 @@ namespace HelloWorld
             this.readLines();
             string code="";
             int num = 5;
+            int[] leftEdge = { 1, 2, 5, 10, 13 };
+            int[] rightEdge = { 1, 4, 9, 12, 13 };
+            int[] upperEdge = { 1, 2, 4, 5, 9};
+            int[] bottomEdge = { 5, 9, 10, 12, 13 };
+
             foreach (string s in this.lines)
             {
                 foreach (char c in s)
@@ -19,27 +24,27 @@ namespace HelloWorld
                     switch (c)
                     {
                         case 'L':
-                            if (num % 3 != 1)
+                            if ( Array.IndexOf(leftEdge, num) == -1 )
                                 num--;
                             break;
                         case 'R':
-                            if (num % 3 != 0)
+                            if (Array.IndexOf(rightEdge, num) == -1)
                                 num++;
                             break;
                         case 'D':
-                            if (num < 7)
-                                num += 3;
+                            if (Array.IndexOf(bottomEdge, num) == -1)
+                                num += (num == 1 | num == 11) ? 2 : 4;
                             break;
                         case 'U':
-                            if (num > 3)
-                                num -= 3;
+                            if (Array.IndexOf(upperEdge, num) == -1)
+                                num -= (num == 3 | num == 13) ? 2 : 4;
                             break;
                     }
+                    
                 }
-                code = code + num.ToString();
-                
+                code += string.Format("{0:X}", num);
             }
-            Console.WriteLine("Task 2 part 1: " + code);
+            Console.WriteLine("Task 2 part 2:" + code);
         }
     }
 }
