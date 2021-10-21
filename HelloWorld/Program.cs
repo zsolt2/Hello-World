@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace HelloWorld
 {
@@ -6,7 +7,11 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+            
+            TaskInterface task;
+            task = new Task1();
+            task.Run();
         }
     }
 }
