@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace HelloWorld
 {
@@ -16,12 +17,28 @@ namespace HelloWorld
         }
         protected void readAllText() 
         {
-            this.text =  System.IO.File.ReadAllText(this.filePath);
+            try
+            {
+                this.text = System.IO.File.ReadAllText(this.filePath);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Environment.Exit(-1);
+            }   
         }
 
         protected void readLines()
         {
-            this.lines =  System.IO.File.ReadAllLines(this.filePath);
+            try
+            {
+                this.lines = System.IO.File.ReadAllLines(this.filePath);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Environment.Exit(-1);
+            }
         }
         
     }
