@@ -363,5 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Ignore input files
-Input/
-/HelloWorld/Inputs/1
+**/Inputs/*
