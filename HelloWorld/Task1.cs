@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace HelloWorld
             this.readAllText();
             string[] commands = this.text.Split(", ");
             Facing facing = Facing.NORTH;
+            var places = new List<( int, int ) >();
             int x, y;
             x = y = 0;
 
@@ -33,24 +35,34 @@ namespace HelloWorld
                         facing = Facing.EAST;
                 }
                 Console.WriteLine(dir + " " + steps + " " + facing);
-                switch (facing)
+                for (int i = 0; i < steps; i++)
                 {
-                    case Facing.NORTH:
-                        y += steps;
-                        break;
-                    case Facing.WEST:
-                        x -= steps;
-                        break;
-                    case Facing.SOUTH:
-                        y -= steps;
-                        break;
-                    case Facing.EAST:
-                        x += steps;
-                        break;
+                    places.Add((x, y));
+                    switch (facing)
+                    {
+                        case Facing.NORTH:
+                            y += 1;
+                            break;
+                        case Facing.WEST:
+                            x -= 1;
+                            break;
+                        case Facing.SOUTH:
+                            y -= 1;
+                            break;
+                        case Facing.EAST:
+                            x += 1;
+                            break;
+                    }
+                    if (places.Contains((x, y)))
+                    {
+                        int val = Math.Abs(x) + Math.Abs(y);
+                        Console.WriteLine("Task 2. solution: " + val);
+                        return;
+                    }
                 }
             }
-            int val = Math.Abs(x) + Math.Abs(y);
-            Console.WriteLine("Task 1. solution: " + val);
+            
+            
         }
     }
 }
