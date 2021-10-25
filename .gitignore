@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Ignore input files
 **/Inputs/*
+MD5.cs

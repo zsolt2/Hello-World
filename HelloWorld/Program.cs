@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using HelloWorld.Task_5;
 
 namespace HelloWorld
 {
@@ -10,7 +11,7 @@ namespace HelloWorld
             Console.WriteLine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             
             TaskInterface task;
-            task = new Task3();
+            task = new Task5();
             task.Run();
         }
     }
