@@ -1,5 +1,5 @@
 ﻿using System;
-using HelloWorld.Task_5;
+using System.Text;
 
 namespace HelloWorld.Task_5
 {
@@ -9,9 +9,9 @@ namespace HelloWorld.Task_5
         public override void Run()
         {
             int suffix = 0;
-            string password = "";
+            StringBuilder password = new StringBuilder("XXXXXXXX");
             string prefix = "wtnhxymk";
-            for (int i = 0; i < 8; i++)
+            while (password.ToString().Contains('X'))
             {
                 string hash;
                 do
@@ -21,9 +21,21 @@ namespace HelloWorld.Task_5
                     suffix++;
                 } while (!hash.StartsWith("00000"));
                 Console.WriteLine(hash);
-                password += hash[5];
+                int position = 8;
+
+                char c = hash[5].ToString()[0];
+                if ( char.IsDigit(c) )
+                    position = int.Parse(c.ToString());
+                
+                if (position <= 7 && password[position] == 'X' )
+                {
+                    password[position] = hash[6];
+                    Console.WriteLine(password);
+                }
+               
+                
             }
-            Console.WriteLine("Password: " + password);
+            Console.WriteLine("Password: " + password.ToString().ToLower());
         }
     }
 }
