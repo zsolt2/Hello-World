@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HelloWorld
 {
@@ -37,15 +36,15 @@ namespace HelloWorld
             string code = "";
             foreach(var dict in chars)
             {
-                KeyValuePair<char, int> max = dict.ElementAt(0);
+                KeyValuePair<char, int> min = dict.ElementAt(0);
                 foreach( var kvp in dict)
                 {
-                    if (max.Value < kvp.Value)
+                    if (min.Value > kvp.Value)
                     {
-                        max = kvp;
+                        min = kvp;
                     }
                 }
-                code += max.Key;
+                code += min.Key;
             }
             Console.WriteLine("Code: "+ code);
         }
