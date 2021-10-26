@@ -11,7 +11,7 @@ namespace HelloWorld
             Console.WriteLine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
             
             TaskInterface task;
-            task = new Task5();
+            task = new Task6();
             task.Run();
         }
     }
