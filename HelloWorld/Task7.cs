@@ -14,29 +14,35 @@ namespace HelloWorld
             int supporstTLS = 0;
             Regex regInsideBrackets = new Regex(@"\[.*?\]");
             Regex regOutsideBracket = new Regex(@"^.*?\[|\].*?\[|\].*?$");
-            Regex regFindTLS = new Regex(@"^.*(?!.*(.)\1{3})(.)(.)(\3)(\2).*$");
+            Regex regFindTLS = new Regex(@"(.)((?!\1).)\2\1"); // source of this regex: https://eddmann.com/posts/advent-of-code-2016-day-7-internet-protocol-version-7/
             foreach ( var s in this.lines)
             {
                 
-                var insideStrings = regInsideBrackets.Split(s);
-                var outsideStrings = regOutsideBracket.Split(s);
+                var outsideStrings = regInsideBrackets.Split(s);
+                var insideStrings = regOutsideBracket.Split(s);
 
-                bool drop = false;
+                bool notTLS = false;
                 foreach( var inside in insideStrings)
                 {
                     if (regFindTLS.IsMatch(inside))
                     {
-                        drop = true;
+                        notTLS = true;
                         break;
                     }
                 }
-                if (drop)
+                if (notTLS)
                     continue;
                 foreach( var outside in outsideStrings)
                 {
-
+                    Console.WriteLine(outside);
+                    if (regFindTLS.IsMatch(outside))
+                    {
+                        supporstTLS++;
+                        break;
+                    }
                 }
             }
+            Console.WriteLine(supporstTLS);
         }
     }
 }
